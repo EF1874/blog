@@ -34,9 +34,81 @@ pre:has(.hljs),
     color: #c9d1d9;
     background: #0d1117;
 }
+pre {
+    overflow-x: auto;
+    padding: 1rem 0;
+}
+
+pre [data-line] {
+    padding: 0 1rem;
+}
+
+[data-rehype-pretty-code-figure],
+[data-rehype-pretty-code-figure] > pre {
+    margin: 0;
+    padding: 0;
+}
+[data-rehype-pretty-code-figure] > pre {
+    width: 100%;
+    overflow: auto;
+    padding: var(--spacing);
+}
+
+/* recommended by https://rehype-pretty-code.netlify.app/ */
+code[data-line-numbers] {
+    counter-reset: line;
+}
+
+code[data-line-numbers] > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+
+    /* Other styling */
+    display: inline-block;
+    width: 1rem;
+    margin-right: 2rem;
+    text-align: right;
+    color: gray;
+}
+
+code[data-line-numbers-max-digits='2'] > [data-line]::before {
+    width: 2rem;
+}
+
+code[data-line-numbers-max-digits='3'] > [data-line]::before {
+    width: 3rem;
+}
+
+/* code blocks custom styling */
+[data-line] {
+    border-left-width: 2px;
+    border-left-style: solid;
+    border-left-color: transparent;
+}
+
+/* 行高亮 */
+[data-highlighted-line] {
+    background-color: #58404c;
+    border-left-color: #d6277f;
+}
+
+/* 设置指定id高亮 */
+[data-highlighted-line][data-highlighted-line-id="errorLine"] {
+    background-color: #6b2424;
+    border-left-color: #ff003d;
+}
+
+/* 文字高亮 */
+[data-highlighted-chars] {
+    background-color: #432936;
+}
+/* 设置指定id文字高亮 */
+[data-highlighted-chars][data-chars-id="mySpecialHighlight"] {
+    background-color: #874691;
+}
 
 /* Overrides for Tailwind Typography */
-article.prose {
+/* article.prose {
     --tw-prose-body: var(--foreground);
     --tw-prose-headings: var(--primary);
     --tw-prose-lead: var(--foreground);
@@ -54,4 +126,4 @@ article.prose {
     --tw-prose-th-borders: var(--foreground);
     --tw-prose-td-borders: var(--foreground);
     --tw-prose-pre-bg: var(--background);
-}
+} */
